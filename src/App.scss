@@ -19,3 +19,78 @@ html, body, #root {
   margin: 0;
   overflow-x: hidden;
 }
+
+// LEAGUES
+div:has(> div.m-league-container) {
+  border-radius: 5px;
+  border: 2px solid #fff;
+  overflow: hidden;
+}
+
+.m-league-container {
+  tr.m-league-table-headers {
+    background-color: #fff !important;
+   
+
+    td {
+      color:#000;
+      font-weight: 900;
+      background-color: #fff !important;
+      box-shadow: none !important;
+    }
+    
+  }
+
+  .accordion {
+    border-radius: 50px !important;
+  }
+
+  .accordion-body {
+    padding: 0;
+    margin: 0;
+    background-color: #000;
+  }
+
+  .accordion-button {
+    display: flex;
+    flex-direction: column;
+    background-color: #000;
+    border: none;
+    color: #fff;
+    width: 100%;
+    padding: 0;
+
+    &::after {
+      display: none !important;
+    }
+
+    h1 {
+      font-weight: 700;
+      margin: 0.5rem;
+    }
+
+    .m-league-prelim-standings {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      
+      span {
+        margin: 0.5rem;
+
+        svg {
+          margin: 0rem 1rem;
+          transform: scale(1.5);
+        }
+      }
+    }
+
+    .m-league-roster {
+      .m-league-roster-team-name,
+      .m-league-roster-player-name {
+        vertical-align: middle;
+        text-align: center;
+      }
+    }
+  }
+}
