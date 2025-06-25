@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/program-panel/static/css/main.622c41f2.css",
+    "main.js": "/program-panel/static/js/main.a5c32ef8.js",
+    "index.html": "/program-panel/index.html",
+    "main.622c41f2.css.map": "/program-panel/static/css/main.622c41f2.css.map",
+    "main.a5c32ef8.js.map": "/program-panel/static/js/main.a5c32ef8.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.622c41f2.css",
+    "static/js/main.a5c32ef8.js"
+  ]
+}
