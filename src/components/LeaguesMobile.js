@@ -1,13 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { Accordion, AccordionBody, AccordionHeader, AccordionItem, useAccordionButton, Table, Tab, Nav } from "react-bootstrap";
+import { Accordion, AccordionBody, AccordionHeader, AccordionItem, ButtonGroup, ToggleButton, Table, Tab, Nav, Button, Card } from "react-bootstrap";
 import axios from 'axios';
 import Papa from 'papaparse';
 import { GiPodium, GiTrophy } from "react-icons/gi";
 import { FaChevronCircleDown, FaChevronCircleUp } from 'react-icons/fa';
 import { GrSchedulePlay } from 'react-icons/gr';
+import agilityClass from '../assets/agility.png';
+import drillsClass from '../assets/drills.png';
+import guidedClass from '../assets/guided.png';
+import privateLessons from '../assets/privates.png';
+import prosClass from '../assets/pros.png';
+import rentals from '../assets/rentals.png';
 
 const LeaguesMobile = () => {
     const [activeKey, setActiveKey] = useState(null);
+
+    const [section, setSection] = useState('leagues');
 
     const [advMens, setAdvMens] = useState([]);
     const [advMensRanks, setAdvMensRanks] = useState([]);
@@ -134,7 +142,36 @@ const LeaguesMobile = () => {
 
     return (
         <div className='m-league-container'>
+            {/* TOGGLE SWITCH */}
+                <ButtonGroup>
+                    <ToggleButton
+                        id="toggle-leagues"
+                        type="radio"
+                        variant={section === 'leagues' ? 'primary' : 'outline-primary'}
+                        name="section"
+                        value="leagues"
+                        checked={section === 'leagues'}
+                        onChange={() => setSection('leagues')}
+                        >
+                            Leagues
+                    </ToggleButton>
+                    <ToggleButton
+                        id="toggle-programs"
+                        type="radio"
+                        variant={section === 'programs' ? 'primary' : 'outline-primary'}
+                        name="section"
+                        values="programs"
+                        checked={section === 'programs'}
+                        onChange={() => setSection('programs')}
+                    >
+                        Programs
+                    </ToggleButton>
+                </ButtonGroup>
+
+            { section === 'leagues' ? (
             <Accordion activeKey={activeKey} onSelect={(key) => setActiveKey(key)} flush>
+                
+
                 {[
                     {
                         key: '0',
@@ -189,7 +226,7 @@ const LeaguesMobile = () => {
                         ]]
                     }
                 ].map((league) => (
-                    <AccordionItem eventKey={league.key} key={league.key}>
+                    <AccordionItem eventKey={league.key} key={league.key} className='m-league-accordion-item'>
                         <AccordionHeader className='m-league-accordion-header'>
                             <h1 className="m-league-name">
                                 {league.title}
@@ -235,7 +272,13 @@ const LeaguesMobile = () => {
                                                 {league.roster.map((team, index) => (
                                                     <tr key={index}>
                                                         <td className="m-league-roster-player-name">
-                                                            {team[0]}<br></br>{team[1]} 
+                                                            <span>
+                                                                {team[0]}
+                                                            </span>
+                                                            <br />
+                                                            <span>
+                                                                {team[1]} 
+                                                            </span>
                                                             </td>
                                                         <td className="m-league-roster-team-name">{team[2]}</td>
                                                     </tr>
@@ -245,7 +288,7 @@ const LeaguesMobile = () => {
                                     </div>
                                 </Tab.Pane>
                                 <Tab.Pane eventKey="schedule">
-                                    <Table variant='dark' striped>
+                                    <Table variant='dark' striped className='m-league-schedule-table'>
                                         
                                         <tbody>
                                             {league.schedule.map((week, index) => {
@@ -327,6 +370,57 @@ const LeaguesMobile = () => {
                     </AccordionItem>
                 ))}
             </Accordion>
+            ) : (
+                
+                // THIS DIV IS INSIDE OF THE M-LEAGUE-CONTAINER DIV, PLEASE REMEMBER THIS
+                <div className='m-programs-container'>
+                    <h2>Program Stuff</h2>
+                    {[
+                        {
+                            key: '0',
+                            title: 'Court Rentals',
+                            description: 'Rent out a court and bring your friends, snacks, and drinks!',
+                            image: { src: rentals, alt: 'Court Rentals' },
+                            registrationLink: 'https://theflightclub.as.me/?appointmentType=category:Court%20Rentals',
+                        },
+                        {
+                            key: '1',
+                            title: 'Private Lessons',
+                            description: 'Book a private lesson with one of our elite coaches.',
+                            image: { src: privateLessons, alt: 'Private Lessons' },
+                            registrationLink: '#about',
+                        },
+                        {
+                            key: '2',
+                            title: 'Skills & Drills',
+                            description: 'Join a group class and participate in intense drills and engaging games aimed at improving your skills.',
+                            image: { src: drillsClass, alt: 'Skills & Drills' },
+                            registrationLink: 'https://theflightclub.as.me/?appointmentType=73750796',
+                        },
+                        {
+                            key: '3',
+                            title: 'Agility Class',
+                            description: 'Work on mastering the art of footwork and increasing your hustle and stamina.',
+                            image: { src: agilityClass, alt: 'Agility Class' },
+                            registrationLink: 'https://theflightclub.as.me/?appointmentType=73750877',
+                        },
+                        {
+                            key: '4',
+                            title: 'Play with the Pros',
+                            description: 'Reach out to an instructor to test your skills in a fun and competitive environment while receiving real-time feedback.',
+                            image: { src: prosClass, alt: 'Play with the Pros' },
+                            registrationLink: '#about',
+                        },
+                        {
+                            key: '5',
+                            title: 'Guided Open Play',
+                            description: 'Join a group of like-minded players for a fun and competitive open play session, guided by one of our coaches.',
+                            image: { src: guidedClass, alt: 'Guided Open Play' },
+                            registrationLink: 'https://theflightclub.as.me/?appointmentType=77262984',
+                        }
+                    ]}
+                </div>
+            ) }
         </div>
     );
 }

@@ -20,6 +20,65 @@ html, body, #root {
   overflow-x: hidden;
 }
 
+// TOGGLE BUTTON GROUP
+.btn-group {
+  position: relative;
+  width: 100%;
+  border: 1px solid #ffcd00;
+  margin-bottom: 1rem;
+
+  .btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    background-color: transparent !important;
+    color: #ffcd00 !important;
+    transition: color 0.5s ease;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-color: #ffcd00;
+      z-index: -1;
+      transform: scaleX(0);
+      transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    &:nth-child(2)::before {
+      transform-origin: right !important;
+    }
+    &:last-child::before {
+      transform-origin: left;
+    } 
+
+    
+
+    &.btn-primary {
+      color: #000 !important;
+      border: none !important;
+      font-weight: bold;
+
+      &::before {
+        transform: scaleX(1);
+      }
+    }
+    
+    &.btn-outline-primary {
+      color: #ffcd00 !important;
+
+      &::before {
+        transform: scaleX(0);
+      }
+    }
+  }
+
+  label {
+    font-weight: bold;
+    border: none !important;
+  }
+}
+
+
 // LEAGUES
 div:has(> div.m-league-container) {
   border-radius: 5px;
@@ -28,6 +87,12 @@ div:has(> div.m-league-container) {
 }
 
 .m-league-container {
+  padding: 0.5rem;
+
+  .m-league-accordion-header {
+    border: 3px solid #ffcd00;
+  }
+
   tr.m-league-table-headers {
     background-color: #fff !important;
    
@@ -37,6 +102,7 @@ div:has(> div.m-league-container) {
       font-weight: 900;
       background-color: #fff !important;
       box-shadow: none !important;
+      vertical-align: middle !important;
     }
     
   }
@@ -49,6 +115,20 @@ div:has(> div.m-league-container) {
     padding: 0;
     margin: 0;
     background-color: #000;
+
+    .nav-item {
+      a {
+        border-radius: 0 !important;
+        color: #fff;
+        font-weight: 500;
+      }
+
+      .active {
+        color: #000;
+        background-color: #ffcd00;
+      }
+      
+    }
   }
 
   .accordion-button {
@@ -68,8 +148,9 @@ div:has(> div.m-league-container) {
       font-weight: 700;
       margin: 0.5rem;
     }
+  }
 
-    .m-league-prelim-standings {
+  .m-league-prelim-standings {
       display: flex;
       flex-direction: column;
       align-items: flex-start;
@@ -85,12 +166,15 @@ div:has(> div.m-league-container) {
       }
     }
 
-    .m-league-roster {
-      .m-league-roster-team-name,
-      .m-league-roster-player-name {
-        vertical-align: middle;
+    td.m-league-roster-team-name {
+      vertical-align: middle !important;
+    }
+
+    .m-league-schedule-table {
+
+      tbody {
         text-align: center;
       }
     }
-  }
+
 }
