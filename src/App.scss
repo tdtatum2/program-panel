@@ -183,6 +183,9 @@ div:has(> div.m-league-container) {
   margin: 1rem auto;
   background-color: #161616;
   color: #fff;
+  height: 475px;
+  align-items: center;
+  justify-content: flex-end;
 
   img {
     width: 100%;
@@ -193,6 +196,8 @@ div:has(> div.m-league-container) {
   .card-body {
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
 
     &::before {
       content: "";
@@ -217,14 +222,9 @@ div:has(> div.m-league-container) {
     color: #000 !important;
     font-weight: bold;
     border: none !important;
-    transition: background-color 0.3s ease;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-
-    &:hover {
-      background-color: #000 !important;
-      color: #ffcd00 !important;
-    }
+    text-align: center;
+    margin-top: auto;
+    align-self: center;
+    width: 100%;
   }
 }

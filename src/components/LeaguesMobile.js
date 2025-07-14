@@ -2,15 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { Accordion, AccordionBody, AccordionHeader, AccordionItem, ButtonGroup, ToggleButton, Table, Tab, Nav, Button, Card } from "react-bootstrap";
 import axios from 'axios';
 import Papa from 'papaparse';
-import { GiPodium, GiTrophy } from "react-icons/gi";
+import { Swiper, SwiperSlide } from 'swiper/react';
+import 'swiper/css';
+import 'swiper/css/pagination';
+import SwiperCore from 'swiper';
+import { Pagination } from 'swiper/modules';
+import { GiTrophy } from "react-icons/gi";
 import { FaChevronCircleDown, FaChevronCircleUp } from 'react-icons/fa';
-import { GrSchedulePlay } from 'react-icons/gr';
 import agilityClass from '../assets/agility.png';
 import drillsClass from '../assets/drills.png';
 import guidedClass from '../assets/guided.png';
 import privateLessons from '../assets/privates3.png';
 import prosClass from '../assets/pros.png';
 import rentals from '../assets/rentals.png';
+
+SwiperCore.use([Pagination]);
 
 const LeaguesMobile = () => {
     const [activeKey, setActiveKey] = useState(null);
@@ -374,7 +380,12 @@ const LeaguesMobile = () => {
                 
                 // THIS DIV IS INSIDE OF THE M-LEAGUE-CONTAINER DIV, PLEASE REMEMBER THIS
                 <div className='m-programs-container'>
-                    <React.Fragment>
+                    <Swiper
+                        spaceBetween={16}
+                        slidesPerView={1}
+                        pagination={{ clickable: true }}
+                        style={{ paddingBottom: '2rem' }}
+                    >
                     {[
                         {
                             key: '0',
@@ -425,16 +436,18 @@ const LeaguesMobile = () => {
                             registrationLink: 'https://theflightclub.as.me/?appointmentType=77262984',
                         }
                     ].map((program) => (
-                        <Card key={program.key} className='m-program-card'>
-                            <Card.Img variant="top" src={program.image.src} alt={program.image.alt} />
-                            <Card.Body>
-                                <Card.Title>{program.title}</Card.Title>
-                                <Card.Text>{program.description}</Card.Text>
-                                <Button variant="primary" href={program.registrationLink} target="_blank">{program.buttonText}</Button>
-                            </Card.Body>
-                        </Card>
+                        <SwiperSlide key={program.key}>
+                            <Card className='m-program-card'>
+                                <Card.Img variant="top" src={program.image.src} alt={program.image.alt} />
+                                <Card.Body>
+                                    <Card.Title>{program.title}</Card.Title>
+                                    <Card.Text>{program.description}</Card.Text>
+                                    <Button variant="primary" href={program.registrationLink} target="_blank">{program.buttonText}</Button>
+                                </Card.Body>
+                            </Card>
+                        </SwiperSlide>
                     ))}
-                    </React.Fragment>
+                    </Swiper>
                 </div>
             ) }
         </div>
