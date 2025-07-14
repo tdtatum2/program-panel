@@ -374,6 +374,7 @@ const LeaguesMobile = () => {
                 
                 // THIS DIV IS INSIDE OF THE M-LEAGUE-CONTAINER DIV, PLEASE REMEMBER THIS
                 <div className='m-programs-container'>
+                    <React.Fragment>
                     {[
                         {
                             key: '0',
@@ -433,6 +434,7 @@ const LeaguesMobile = () => {
                             </Card.Body>
                         </Card>
                     ))}
+                    </React.Fragment>
                 </div>
             ) }
         </div>

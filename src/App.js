@@ -10,7 +10,6 @@ function App() {
         <LeaguesMobile />
       </div>
       <div className="desktop-layout">
-        
       </div>
     </Container>
   );
