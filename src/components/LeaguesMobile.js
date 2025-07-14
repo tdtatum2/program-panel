@@ -8,7 +8,7 @@ import { GrSchedulePlay } from 'react-icons/gr';
 import agilityClass from '../assets/agility.png';
 import drillsClass from '../assets/drills.png';
 import guidedClass from '../assets/guided.png';
-import privateLessons from '../assets/privates2.png';
+import privateLessons from '../assets/privates3.png';
 import prosClass from '../assets/pros.png';
 import rentals from '../assets/rentals.png';
 
