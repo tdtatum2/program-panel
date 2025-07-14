@@ -176,5 +176,55 @@ div:has(> div.m-league-container) {
         text-align: center;
       }
     }
+}
 
+.m-program-card {
+  border: 3px solid #ffcd00;
+  margin: 1rem auto;
+  background-color: #161616;
+  color: #fff;
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px 5px 0 0;
+  }
+
+  .card-body {
+    position: relative;
+    z-index: 1;
+
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image: url('./assets/flightLogo.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+  }
+  .card-title {
+    font-weight: 700;
+    font-size: 1.75rem;
+  }
+
+  .btn {
+    background-color: #ffcd00 !important;
+    color: #000 !important;
+    font-weight: bold;
+    border: none !important;
+    transition: background-color 0.3s ease;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+
+    &:hover {
+      background-color: #000 !important;
+      color: #ffcd00 !important;
+    }
+  }
 }

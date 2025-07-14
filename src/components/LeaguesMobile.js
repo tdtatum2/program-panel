@@ -8,7 +8,7 @@ import { GrSchedulePlay } from 'react-icons/gr';
 import agilityClass from '../assets/agility.png';
 import drillsClass from '../assets/drills.png';
 import guidedClass from '../assets/guided.png';
-import privateLessons from '../assets/privates.png';
+import privateLessons from '../assets/privates2.png';
 import prosClass from '../assets/pros.png';
 import rentals from '../assets/rentals.png';
 
@@ -374,13 +374,13 @@ const LeaguesMobile = () => {
                 
                 // THIS DIV IS INSIDE OF THE M-LEAGUE-CONTAINER DIV, PLEASE REMEMBER THIS
                 <div className='m-programs-container'>
-                    <h2>Program Stuff</h2>
                     {[
                         {
                             key: '0',
                             title: 'Court Rentals',
                             description: 'Rent out a court and bring your friends, snacks, and drinks!',
                             image: { src: rentals, alt: 'Court Rentals' },
+                            buttonText: 'Book Now',
                             registrationLink: 'https://theflightclub.as.me/?appointmentType=category:Court%20Rentals',
                         },
                         {
@@ -388,6 +388,7 @@ const LeaguesMobile = () => {
                             title: 'Private Lessons',
                             description: 'Book a private lesson with one of our elite coaches.',
                             image: { src: privateLessons, alt: 'Private Lessons' },
+                            buttonText: 'Find an Instructor',
                             registrationLink: '#about',
                         },
                         {
@@ -395,6 +396,7 @@ const LeaguesMobile = () => {
                             title: 'Skills & Drills',
                             description: 'Join a group class and participate in intense drills and engaging games aimed at improving your skills.',
                             image: { src: drillsClass, alt: 'Skills & Drills' },
+                            buttonText: 'Register',
                             registrationLink: 'https://theflightclub.as.me/?appointmentType=73750796',
                         },
                         {
@@ -402,6 +404,7 @@ const LeaguesMobile = () => {
                             title: 'Agility Class',
                             description: 'Work on mastering the art of footwork and increasing your hustle and stamina.',
                             image: { src: agilityClass, alt: 'Agility Class' },
+                            buttonText: 'Register',
                             registrationLink: 'https://theflightclub.as.me/?appointmentType=73750877',
                         },
                         {
@@ -409,6 +412,7 @@ const LeaguesMobile = () => {
                             title: 'Play with the Pros',
                             description: 'Reach out to an instructor to test your skills in a fun and competitive environment while receiving real-time feedback.',
                             image: { src: prosClass, alt: 'Play with the Pros' },
+                            buttonText: 'Find an Instructor',
                             registrationLink: '#about',
                         },
                         {
@@ -416,9 +420,19 @@ const LeaguesMobile = () => {
                             title: 'Guided Open Play',
                             description: 'Join a group of like-minded players for a fun and competitive open play session, guided by one of our coaches.',
                             image: { src: guidedClass, alt: 'Guided Open Play' },
+                            buttonText: 'Register',
                             registrationLink: 'https://theflightclub.as.me/?appointmentType=77262984',
                         }
-                    ]}
+                    ].map((program) => (
+                        <Card key={program.key} className='m-program-card'>
+                            <Card.Img variant="top" src={program.image.src} alt={program.image.alt} />
+                            <Card.Body>
+                                <Card.Title>{program.title}</Card.Title>
+                                <Card.Text>{program.description}</Card.Text>
+                                <Button variant="primary" href={program.registrationLink} target="_blank">{program.buttonText}</Button>
+                            </Card.Body>
+                        </Card>
+                    ))}
                 </div>
             ) }
         </div>
